@@ -73,9 +73,7 @@ function userOnNonMfaList (mfa_disabled, user) {
 }
 
 function addUserToNotifyList (user) {
-  console.log ("testing: " + user)
   if (userNotOnNotifyList (user)) {
-    console.log ("adding: " + user)
     notifyList.push (user)
   }
 }
