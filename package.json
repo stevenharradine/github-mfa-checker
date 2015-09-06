@@ -1,0 +1,9 @@
+{
+  "name": "github-mfa-checker",
+  "description": "Checks all users in teams with admin permission have their 2 factor authentication enabled",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "node-curl": "*"
+  }
+}
