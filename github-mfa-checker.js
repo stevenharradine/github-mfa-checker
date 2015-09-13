@@ -8,21 +8,26 @@ var CONFIG  = require("./config"),
     },
     notifyList = []
 
-curl("https://api.github.com/orgs/" + CONFIG.GITHUB_ORG + "/members?filter=2fa_disabled", options, function(err) {
-  var mfa_disabled = JSON.parse(this.body)
-
-  console.log ("Non-MFA enabled users in org:")
-  for (i in mfa_disabled) {
-    console.log ("\t" + mfa_disabled[i].login)
-  }
-
-  curl("https://api.github.com/user/teams", options, function(err) {
-    var teams = JSON.parse(this.body)
-
-    traverseGroups (0, teams, mfa_disabled)
-  })
+getAllUsersWithMfaDisabled (function (teams, mfa_disabled) {
+  traverseGroups (0, teams, mfa_disabled)
 })
 
+function getAllUsersWithMfaDisabled (callback) {
+  curl("https://api.github.com/orgs/" + CONFIG.GITHUB_ORG + "/members?filter=2fa_disabled", options, function(err) {
+    var mfa_disabled = JSON.parse(this.body)
+
+    console.log ("Non-MFA enabled users in org:")
+    for (i in mfa_disabled) {
+      console.log ("\t" + mfa_disabled[i].login)
+    }
+
+    curl("https://api.github.com/user/teams", options, function(err) {
+      var teams = JSON.parse(this.body)
+
+      callback (teams, mfa_disabled)
+    })
+  })
+}
 
 function traverseGroups (team_index, teams, mfa_disabled) {
   if (teams[team_index].permission == "admin") {
