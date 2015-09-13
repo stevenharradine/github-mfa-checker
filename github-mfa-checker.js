@@ -9,7 +9,9 @@ var CONFIG  = require("./config"),
     notifyList = []
 
 getAllUsersWithMfaDisabled (function (teams, mfa_disabled) {
-  traverseGroups (0, teams, mfa_disabled)
+  traverseGroups (0, teams, mfa_disabled, function () {
+    showNotifyList ()
+  })
 })
 
 function getAllUsersWithMfaDisabled (callback) {
@@ -29,7 +31,7 @@ function getAllUsersWithMfaDisabled (callback) {
   })
 }
 
-function traverseGroups (team_index, teams, mfa_disabled) {
+function traverseGroups (team_index, teams, mfa_disabled, callback) {
   if (teams[team_index].permission == "admin") {
     var members_url = teams[team_index].members_url.replace ("{/member}", "")
 
@@ -49,22 +51,24 @@ function traverseGroups (team_index, teams, mfa_disabled) {
         }
       }
 
-      nextGroup (team_index, teams, mfa_disabled)
+      nextGroup (team_index, teams, mfa_disabled, function () {
+        callback()
+      })
     })
   } else {
-    nextGroup (team_index, teams, mfa_disabled)
+    nextGroup (team_index, teams, mfa_disabled, callback)
   }
 }
 
-function nextGroup (team_index, teams, mfa_disabled) {
+function nextGroup (team_index, teams, mfa_disabled, callback) {
   var delay = 0
 
   if (team_index++ < teams.length - 1) {
     setTimeout(function(){
-      traverseGroups (team_index, teams, mfa_disabled)
+      traverseGroups (team_index, teams, mfa_disabled, callback)
     }, delay)
   } else {
-    showNotifyList ()
+    callback ()
   }
 }
 
