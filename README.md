@@ -1,11 +1,10 @@
 # github-mfa-checker
 Checks all admin users of a github org have their 2 factor authentication enabled.
 
-```
-
 ## install apt dependancies
 ```
 sudo apt-get install libcurl4-openssl-dev
+```
 
 ## clone the repo
 ```
