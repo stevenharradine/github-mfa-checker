@@ -1,5 +1,8 @@
 var CONFIG  = require("./config"),
     curl    = require('node-curl'),
+    Slack   = require("node-slack"),
+    slack   = new Slack("https://hooks.slack.com/services/" + CONFIG.SLACK_TOKEN),
+    newLine = String.fromCharCode(13) + String.fromCharCode(10),
     options = {
       HTTPHEADER: [
                    'User-Agent: github-mfa-checker',
@@ -97,8 +100,29 @@ function userNotOnNotifyList (user) {
 }
 
 function showNotifyList () {
-  console.log ("Admin users with MFA disabled:")
+  var title_label = "Admin users with MFA disabled:",
+      slack_message = ""
+
+  console.log (title_label)
+  slack_message += title_label + newLine
   for (notifyList_index in notifyList) {
     console.log ("\t" + notifyList[notifyList_index])
+    slack_message += "\t" + notifyList[notifyList_index] + newLine
   }
+
+  sendSlack (slack_message, "#skynet")
+}
+
+function sendSlack (message, channel) {//, index, array, callback) {
+  slack.send({
+    text: message,
+    channel: channel,
+    username: "Github MFA checker"
+  }, function (error) {
+    if (error != null && error.message != null) {
+      console.log ("Slack: " + error.message)
+    }
+  })
+
+//  callback(index, array);
 }
