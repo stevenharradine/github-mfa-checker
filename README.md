@@ -8,13 +8,16 @@ Checks all admin users of a github org have their 2 factor authentication enable
 npm install
 ```
 
-## set up your org and github token in the config
+## update config.js
 ```
-module.exports.GITHUB_TOKEN = "{{ your_token }}"
-module.exports.GITHUB_ORG = "{{ your_org }}"
+ * `GITHUB_ORG` (string) - github organization to run in
+ * `GITHUB_TOKEN` (string) - github token
+ * `SLACK_CHANNEL` (string) - Slack channel to notify when admin users found
+ * `SLACK_LOG` (string) - Slack channel to log too (more verbose then SLACK_CHANNEL)
+ * `SLACK_TOKEN` (string) - Slack token
 ```
 
-## run the app
+## run
 ```
 node github-mfa-checker
 ```
