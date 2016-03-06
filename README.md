@@ -9,13 +9,11 @@ npm install
 ```
 
 ## update config.js
-```
  * `GITHUB_ORG` (string) - github organization to run in
  * `GITHUB_TOKEN` (string) - github token
  * `SLACK_CHANNEL` (string) - Slack channel to notify when admin users found
  * `SLACK_LOG` (string) - Slack channel to log too (more verbose then SLACK_CHANNEL)
  * `SLACK_TOKEN` (string) - Slack token
-```
 
 ## run
 ```
