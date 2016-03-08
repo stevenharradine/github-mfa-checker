@@ -1,7 +1,7 @@
 # github-mfa-checker
 Checks all admin users of a github org have their 2 factor authentication enabled.
 
-[![Licence](https://img.shields.io/badge/Licence-ISC-blue.svg)](https://opensource.org/licenses/ISC) [![Code Climate](https://codeclimate.com/github/stevenharradine/github-mfa-checker/badges/gpa.svg)](https://codeclimate.com/github/stevenharradine/github-mfa-checker) [![Issue Count](https://codeclimate.com/github/stevenharradine/github-mfa-checker/badges/issue_count.svg)](https://codeclimate.com/github/stevenharradine/github-mfa-checker)
+[![Licence](https://img.shields.io/badge/Licence-ISC-blue.svg)](https://opensource.org/licenses/ISC) [![Code Climate](https://codeclimate.com/github/telusdigital/github-mfa-checker/badges/gpa.svg)](https://codeclimate.com/github/telusdigital/github-mfa-checker) [![Issue Count](https://codeclimate.com/github/telusdigital/github-mfa-checker/badges/issue_count.svg)](https://codeclimate.com/github/telusdigital/github-mfa-checker)
 
 ## install npm packages
 ```
